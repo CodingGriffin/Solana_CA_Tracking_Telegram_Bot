@@ -60,6 +60,24 @@ bot.onText(/\/start/, (msg:any) => {
   bot.sendMessage(chatId, welcomeMessage, options);
 });
 
+function extractBetween(str: string, startDelimiter: string): string | null {
+  const start: number = str.indexOf(startDelimiter);
+  
+  if (start !== -1) {
+      return str.substring(start + startDelimiter.length + 2, start + startDelimiter.length + 46);
+  }
+  return null;
+}
+// function extractBetween(str: string, startDelimiter: string, endDelimiter: string): string | null {
+//   const start: number = str.indexOf(startDelimiter);
+//   const end: number = str.indexOf(endDelimiter, start + startDelimiter.length);
+  
+//   if (start !== -1 && end !== -1) {
+//       return str.substring(start + startDelimiter.length, end);
+//   }
+//   return null;
+// }
+
 bot.on("callback_query", async (callbackQuery:any) => {
   const message = callbackQuery.message;
   const category = callbackQuery.data;
@@ -85,6 +103,11 @@ bot.on("callback_query", async (callbackQuery:any) => {
       bot.sendMessage(chatId, "☹Unknown Telegram Channel☹     \n\n   😁Please Enter Correct One!     \n\n⚱️  For example: Telegram                      ");
     }
     console.log('telegram scraper result ===============> ', messages)
+    const message_json = JSON.parse(messages);
+    message_json.map((one:any) => console.log("resutl=======>", extractBetween(one.message_text, "Photon")));
+    // console.log('telegram scraper result ===============> ', message_json);
+    // const extracted: string | null = extractBetween(messages, "Photon", "message_photo");
+    // console.log(extracted); // Output: "brown fox"
   }
 
   if(category == "enter_channel") {
