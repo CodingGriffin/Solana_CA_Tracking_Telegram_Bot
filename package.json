@@ -23,7 +23,8 @@
     "node-fetch": "^3.3.2",
     "node-telegram-bot-api": "^0.66.0",
     "telegram": "^2.22.2",
-    "telegram-bot-api": "^2.0.1"
+    "telegram-bot-api": "^2.0.1",
+    "telegram-scraper": "^1.0.1"
   },
   "devDependencies": {
     "@types/big.js": "^6.2.2",
